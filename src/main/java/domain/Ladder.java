@@ -13,10 +13,10 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(int playerCount, Height height, BooleanGenerator booleanGenerator){
+    public static Ladder of(Width width, Height height, BooleanGenerator booleanGenerator){
         List<Line> lines = new ArrayList<>();
         while (height.isRemain()) {
-            lines.add(new Line(playerCount, booleanGenerator));
+            lines.add(new Line(width, booleanGenerator));
             height.decrease();
         }
         return new Ladder(lines);

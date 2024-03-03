@@ -9,16 +9,16 @@ public class Prizes {
         this.prizes = prizes;
     }
 
-    public static Prizes of(List<String> prizeNames, int playerCount) {
-        validateRange(prizeNames, playerCount);
+    public static Prizes of(List<String> prizeNames, Width width) {
+        validateRange(prizeNames, width.get());
         List<Prize> prizes = prizeNames.stream()
                 .map(Prize::new)
                 .toList();
         return new Prizes(prizes);
     }
 
-    private static void validateRange(List<String> prizeNames, int playerCount) {
-        if (playerCount != prizeNames.size()) {
+    private static void validateRange(List<String> prizeNames, int width) {
+        if (width != prizeNames.size()) {
             throw new IllegalArgumentException(String.format("실행 결과는 참여자와 같은 갯수를 입력해주세요. 입력 : %d개", prizeNames.size()));
         }
     }

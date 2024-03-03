@@ -6,6 +6,7 @@ import domain.Ladder;
 import domain.Players;
 import domain.PrizeResults;
 import domain.Prizes;
+import domain.Width;
 import java.util.Map;
 import java.util.function.Supplier;
 import view.InputView;
@@ -24,9 +25,10 @@ public class LadderGameController {
 
     public void run() {
         Players players = initPlayers();
-        Prizes prizes = initPrizes(players.getSize());
+        Width width = new Width(players.getSize());
+        Prizes prizes = initPrizes(width);
         Height height = initHeight();
-        Ladder ladder = initLadder(players.getSize(), height);
+        Ladder ladder = initLadder(width, height);
         PrizeResults prizeResults = new PrizeResults(ladder.getResult(players,prizes));
         outputView.printResult(ladder.getLinesInformation(), players.getNames(), prizes.getPrizeNames());
         viewingUntilGetAll(prizeResults);
@@ -36,16 +38,16 @@ public class LadderGameController {
         return repeatUntilValidInput(() -> new Players(inputView.readPlayerNames()));
     }
 
-    private Prizes initPrizes(int playerCount) {
-        return repeatUntilValidInput(() -> Prizes.of(inputView.readPrizeNames(), playerCount));
+    private Prizes initPrizes(Width width) {
+        return repeatUntilValidInput(() -> Prizes.of(inputView.readPrizeNames(), width));
     }
 
     private Height initHeight() {
         return repeatUntilValidInput(() -> new Height(inputView.readHeight()));
     }
 
-    private Ladder initLadder(int playerCount, Height height) {
-        return Ladder.of(playerCount, height, booleanGenerator);
+    private Ladder initLadder(Width width, Height height) {
+        return Ladder.of(width, height, booleanGenerator);
     }
     private void viewingUntilGetAll(PrizeResults prizeResults) {
         String operator;

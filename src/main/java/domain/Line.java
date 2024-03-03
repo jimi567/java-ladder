@@ -7,9 +7,9 @@ public class Line {
 
     private final List<Bridge> bridges;
 
-    public Line(int playerCount, BooleanGenerator booleanGenerator) {
+    public Line(Width width, BooleanGenerator booleanGenerator) {
         bridges = new ArrayList<>();
-        for (int position = 0; position < playerCount - 1; position++) {
+        for (int position = 0; position < width.get() - 1; position++) {
             addBridge(booleanGenerator);
         }
     }
