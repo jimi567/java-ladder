@@ -35,7 +35,6 @@ public class PrizeResults {
                 .filter(entry -> entry.getKey().getName().equals(op))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
-
     public Map<String, String> convertResultToData(Map<Player, Prize> result) {
         Map<String, String> resultsInformation = new LinkedHashMap<>();
         for (Player key : result.keySet()) {

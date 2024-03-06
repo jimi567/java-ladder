@@ -21,7 +21,7 @@ class PrizeResultsTest {
     private PrizeResults init() {
         Ladder ladder = Ladder.of(new Width(3),new Height(3),new FixedBooleanGenerator(true));
         Players players = new Players(List.of("wiib","pobi","haha"));
-        Prizes prizes = Prizes.of(List.of("꽝","당첨","꽝"),3);
+        Prizes prizes = Prizes.of(List.of("꽝","당첨","꽝"),new Width(3));
         return new PrizeResults(ladder.getResult(players,prizes));
     }
     @Test
